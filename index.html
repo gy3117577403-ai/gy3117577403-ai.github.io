@@ -186,7 +186,7 @@ section{scroll-margin-top:64px}
 <nav><div class="nav-in">
   <span class="brand">REPORT No. LXL-2027</span>
   <a class="nl" href="#s01">01 概况</a><a class="nl" href="#s02">02 履历</a>
-  <a class="nl" href="#s03">03 项目</a><a class="nl" href="#s04">04 方法与演示</a>
+  <a class="nl" href="#s03">03 项目</a><a class="nl" href="#s3d">3D 模型</a><a class="nl" href="#s04">04 方法与演示</a>
   <a class="nl" href="#s05">05 成果</a><a class="nl" href="#s06" style="color:var(--red)">↓ 简历PDF</a><a class="nl" href="#s06">附录 联系</a>
 </div></nav>
 
@@ -311,6 +311,16 @@ section{scroll-margin-top:64px}
       <ul><li>学生负责人：动作分解与功能定义</li><li>电机驱动执行机构、末端抓夹总装设计</li><li>运动仿真与空间干涉检查</li></ul><div class="enter">打开项目报告 →</div></div>
   </div>
 </section>
+
+<section id="s3d">
+  <div class="rh"><span class="rno">3D</span><div><div class="rlab">INTERACTIVE 3D · THESIS OBJECT</div><h2>课题对象 · 钢带悬挂系统（3D 示意）</h2></div></div>
+  <div class="d3wrap">
+    <canvas id="d3cv"></canvas>
+    <div class="d3hint">DRAG · 拖动旋转</div>
+    <div class="d3cap">我的硕士课题的研究对象：电梯钢带悬挂系统（曳引轮 · 钢带 · 轿厢）。此为结构示意模型、非工程图纸；带身上的红点是钢带断丝损伤的示意位置——我的工作，就是从振动信号里把它找出来。</div>
+  </div>
+</section>
+
 <section id="s04">
   <div class="rh"><span class="rno">04</span><div><div class="rlab">TEST ITEM 04 · METHODS & LIVE DEMOS</div><h2>检测方法与设备 · 附现场演示</h2></div></div>
   <div class="bar-row" onclick="openSkill('sw')"><div class="bl"><span>SolidWorks 三维建模 / 装配 / 参数化设计</span><span>熟练 <span class="hint">[看实证]</span></span></div><div class="bar"><i data-w="92"></i></div></div>
@@ -790,6 +800,111 @@ body::after{content:"";position:fixed;inset:0;z-index:85;pointer-events:none;opa
       c.addEventListener('mousemove',function(e){ var r=c.getBoundingClientRect(), px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5; c.style.transform='perspective(720px) rotateX('+(-py*7)+'deg) rotateY('+(px*7)+'deg) translateY(-4px)'; });
       c.addEventListener('mouseleave',function(){ c.style.transform=''; setTimeout(function(){c.style.transition='';c.style.transitionDelay='';},200); });
     });
+  }
+})();
+</script>
+
+<style>
+.d3wrap{position:relative;background:radial-gradient(120% 130% at 50% 0%,#132638,#0b141d);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden}
+#d3cv{display:block;width:100%;height:450px;touch-action:pan-y;cursor:grab}
+#d3cv:active{cursor:grabbing}
+@media(max-width:640px){#d3cv{height:340px}}
+.d3hint{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:#9fd8bb;border:1px solid rgba(60,232,143,.4);padding:4px 10px;border-radius:4px;background:rgba(11,20,29,.55)}
+.d3cap{position:absolute;left:0;right:0;bottom:0;padding:26px 18px 12px;font-size:13.5px;line-height:1.75;color:#c8d4df;background:linear-gradient(transparent,rgba(5,10,16,.88) 55%)}
+.pcard{position:relative;overflow:hidden}
+.pcard::after{content:"";position:absolute;inset:0;background:radial-gradient(320px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.35),transparent 65%);opacity:0;transition:opacity .3s;pointer-events:none}
+.pcard:hover::after{opacity:1}
+@media print{#d3cv{height:200px}.d3hint{display:none}}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ---------- 3D 钢带悬挂系统 ---------- */
+  var cv=document.getElementById('d3cv');
+  if(cv && window.THREE){
+    var renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+    renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));
+    var scene=new THREE.Scene();
+    var cam=new THREE.PerspectiveCamera(42,2,.1,100); cam.position.set(3.4,1.4,9.2); cam.lookAt(0,-.4,0);
+    scene.add(new THREE.AmbientLight(0xbfd4e6,.75));
+    var key=new THREE.DirectionalLight(0xffffff,1.05); key.position.set(5,9,7); scene.add(key);
+    var red=new THREE.PointLight(0xc8402a,1.1,30); red.position.set(-6,1,4); scene.add(red);
+    var G=new THREE.Group(); scene.add(G);
+    var metal=new THREE.MeshStandardMaterial({color:0x2c3a49,metalness:.72,roughness:.34});
+    var darkM=new THREE.MeshStandardMaterial({color:0x171f28,metalness:.5,roughness:.5});
+    function sheave(r,x,y){
+      var g=new THREE.Group();
+      var body=new THREE.Mesh(new THREE.CylinderGeometry(r,r,.5,56),metal); body.rotation.x=Math.PI/2; g.add(body);
+      var rim=new THREE.Mesh(new THREE.TorusGeometry(r,.05,12,72),new THREE.MeshStandardMaterial({color:0xc8402a,metalness:.4,roughness:.4})); g.add(rim);
+      var hub=new THREE.Mesh(new THREE.CylinderGeometry(r*.16,r*.16,.62,24),darkM); hub.rotation.x=Math.PI/2; g.add(hub);
+      for(var i=0;i<6;i++){ var b=new THREE.Mesh(new THREE.CylinderGeometry(.05,.05,.6,10),darkM); b.rotation.x=Math.PI/2; var a=i/6*Math.PI*2; b.position.set(Math.cos(a)*r*.6,Math.sin(a)*r*.6,0); g.add(b); }
+      g.position.set(x,y,0); G.add(g); return g;
+    }
+    var sTop=sheave(1.18,0,1.75), sBot=sheave(.86,0,-1.55);
+    /* 钢带闭环 */
+    var sh=new THREE.Shape();
+    sh.moveTo(1.18,1.75); sh.lineTo(.86,-1.55);
+    sh.absarc(0,-1.55,.86,0,Math.PI,true);
+    sh.lineTo(-1.18,1.75);
+    sh.absarc(0,1.75,1.18,Math.PI,0,true);
+    var beltGeo=new THREE.ExtrudeGeometry(sh,{depth:.3,bevelEnabled:false});
+    beltGeo.translate(0,0,-.15);
+    var belt=new THREE.Mesh(beltGeo,new THREE.MeshStandardMaterial({color:0x46525f,metalness:.45,roughness:.48,side:THREE.DoubleSide}));
+    G.add(belt);
+    var edges=new THREE.LineSegments(new THREE.EdgesGeometry(beltGeo,24),new THREE.LineBasicMaterial({color:0x3ce88f,transparent:true,opacity:.28}));
+    G.add(edges);
+    /* 轿厢 */
+    var car=new THREE.Group();
+    var cab=new THREE.Mesh(new THREE.BoxGeometry(1.5,1.05,.62),new THREE.MeshStandardMaterial({color:0x22303f,metalness:.6,roughness:.4})); car.add(cab);
+    var cabEdge=new THREE.LineSegments(new THREE.EdgesGeometry(cab.geometry),new THREE.LineBasicMaterial({color:0xe8eef4,transparent:true,opacity:.5})); car.add(cabEdge);
+    [-0.5,0.5].forEach(function(dx){ var rod=new THREE.Mesh(new THREE.CylinderGeometry(.035,.035,.62,8),metal); rod.position.set(dx,.82,0); car.add(rod); });
+    car.position.set(0,-3.15,0); G.add(car);
+    /* 断丝红点 */
+    var dmg=new THREE.Mesh(new THREE.OctahedronGeometry(.11),new THREE.MeshBasicMaterial({color:0xff4a33}));
+    dmg.position.set(1.06,-.1,.2); G.add(dmg);
+    var dmgRing=new THREE.Mesh(new THREE.TorusGeometry(.2,.014,8,40),new THREE.MeshBasicMaterial({color:0xff4a33,transparent:true,opacity:.7}));
+    dmgRing.position.copy(dmg.position); G.add(dmgRing);
+    /* 地面网格 + 粒子 */
+    var grid=new THREE.GridHelper(34,34,0x2a4a66,0x182c40); grid.position.y=-4.1; grid.material.transparent=true; grid.material.opacity=.4; scene.add(grid);
+    var pn=260, pos=new Float32Array(pn*3);
+    for(var i=0;i<pn;i++){ pos[i*3]=(Math.random()-.5)*22; pos[i*3+1]=(Math.random()-.5)*11; pos[i*3+2]=(Math.random()-.5)*10-2; }
+    var pg=new THREE.BufferGeometry(); pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+    var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0x3ce88f,size:.045,transparent:true,opacity:.5}));
+    scene.add(pts);
+    /* 交互与动画 */
+    var try_=0,trx=0,ry=.55,rx=.14,drag=false,px=0,py=0,vis=true;
+    function down(e){drag=true;px=e.clientX;py=e.clientY;}
+    function move(e){ if(!drag) return; try_+=(e.clientX-px)*.008; trx+=(e.clientY-py)*.005; trx=Math.max(-.7,Math.min(.7,trx)); px=e.clientX; py=e.clientY; }
+    function up(){drag=false;}
+    cv.addEventListener('pointerdown',down); addEventListener('pointermove',move); addEventListener('pointerup',up);
+    function size(){ var w=cv.clientWidth,hh=cv.clientHeight; renderer.setSize(w,hh,false); cam.aspect=w/hh; cam.updateProjectionMatrix(); }
+    size(); addEventListener('resize',size);
+    if('IntersectionObserver' in window) new IntersectionObserver(function(e){vis=e[0].isIntersecting;}).observe(cv);
+    var t0=0;
+    (function anim(ts){ requestAnimationFrame(anim); if(!vis) return; t0=ts*.001;
+      if(!drag && !RM){ try_+=.0038; }
+      ry+=(try_-ry)*.06; rx+=(trx-rx)*.06;
+      G.rotation.y=ry; G.rotation.x=rx;
+      sTop.rotation.z-=.011; sBot.rotation.z-=.015;
+      var s=1+Math.sin(t0*3.2)*.22; dmg.scale.set(s,s,s); dmgRing.scale.set(2-s*.5,2-s*.5,2-s*.5); dmgRing.lookAt(cam.position);
+      pts.rotation.y=t0*.014;
+      renderer.render(scene,cam);
+    })(0);
+  } else if(cv){ cv.parentElement.style.display='none'; }
+  /* ---------- 卡片反光 + 头图视差 ---------- */
+  if(matchMedia('(pointer: fine)').matches && !RM){
+    document.querySelectorAll('.pcard').forEach(function(c){
+      c.addEventListener('mousemove',function(e){ var r=c.getBoundingClientRect(); c.style.setProperty('--gx',((e.clientX-r.left)/r.width*100)+'%'); c.style.setProperty('--gy',((e.clientY-r.top)/r.height*100)+'%'); });
+    });
+    var hero=document.querySelector('.hero');
+    if(hero){
+      var layers=[['h1',5],['.plate',9],['.scopeBox',13]];
+      hero.addEventListener('mousemove',function(e){ var r=hero.getBoundingClientRect(), dx=(e.clientX-r.left)/r.width-.5, dy=(e.clientY-r.top)/r.height-.5;
+        layers.forEach(function(L){ var el=hero.querySelector(L[0]); if(el) el.style.transform='translate('+(dx*L[1])+'px,'+(dy*L[1]*.6)+'px)'; }); });
+      hero.addEventListener('mouseleave',function(){ layers.forEach(function(L){ var el=hero.querySelector(L[0]); if(el) el.style.transform=''; }); });
+    }
   }
 })();
 </script>
