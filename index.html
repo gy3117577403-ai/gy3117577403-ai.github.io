@@ -194,6 +194,7 @@ section{scroll-margin-top:64px}
 
 <div class="hero"><canvas id="heroWave" aria-hidden="true"></canvas><div class="obadge" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="cir" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><circle cx="50" cy="50" r="49" fill="rgba(11,20,29,.55)" stroke="rgba(255,255,255,.28)"/><text font-size="10.5" fill="#e8e4d8" letter-spacing="2.6" font-family="monospace"><textPath href="#cir">2027届 · 求职中 · OPEN TO WORK · 杭州 ·</textPath></text><circle cx="50" cy="50" r="4.5" fill="#c8402a"/></svg></div><div class="hero-in">
   <div class="hero-top"><span>可靠性试验报告 · PERSONAL RELIABILITY TEST REPORT</span><span>报告编号 LXL-2027-001</span></div>
+      <div id="railNow">NOW VIEWING · 报告总览</div>
   <div class="hero-grid">
     <div>
       <h1>冷孝丽</h1>
@@ -226,6 +227,12 @@ section{scroll-margin-top:64px}
         <span class="chip">国家奖学金</span><span class="chip">英语六级 CET-6</span>
         <button class="chip" onclick="copyText('1669869402@qq.com','邮箱')">✉ 1669869402@qq.com（复制）</button>
         <button class="chip" onclick="copyText('13119997116','电话')">☎ 13119997116（复制）</button>
+      </div>
+      <div class="railStats">
+        <div><b data-cnt="3.71" data-dec="2">0</b><span>GPA / 4.0 · 专业前 5%</span></div>
+        <div><b data-cnt="3">0</b><span>第一作者论文 SCI×2 EI×1</span></div>
+        <div><b data-cnt="3">0</b><span>国家级 / 省级课题</span></div>
+        <div><b data-cnt="2">0</b><span>段对口研发实习</span></div>
       </div>
     </div>
   </div>
@@ -1052,5 +1059,56 @@ h1,.rh h2,.vhero h3,.boot-in .b3{font-family:'Noto Serif SC','Noto Sans SC',seri
   .hero{position:relative;height:auto;overflow:visible}
 }
 </style>
+
+<style>
+#railNow{display:none}
+@media(min-width:1024px){
+  #railNow{display:block;font-family:var(--mono);font-size:11px;letter-spacing:2.5px;color:#7fd6a4;border:1px dashed rgba(60,232,143,.35);padding:6px 10px;margin-top:14px;border-radius:4px}
+}
+.railStats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 12px;margin-top:20px;border-top:1px dashed rgba(255,255,255,.25);padding-top:16px}
+@media(min-width:1024px){.railStats{grid-template-columns:repeat(2,1fr)}}
+.railStats b{font-family:'Noto Serif SC',serif;font-size:27px;color:#fff;display:block;line-height:1.1}
+.railStats span{font-size:11px;color:#8fa3b5;letter-spacing:.5px}
+#tlFill{position:absolute;left:7px;top:6px;width:2px;background:#c8402a;height:0;z-index:1}
+.tl-item.passed::before{background:#c8402a;border-color:#c8402a}
+</style>
+
+<script>
+(function(){
+  /* 数字滚动 */
+  var counted=false;
+  function countUp(){
+    if(counted) return; counted=true;
+    document.querySelectorAll('.railStats b[data-cnt]').forEach(function(el){
+      var target=parseFloat(el.getAttribute('data-cnt')), dec=+(el.getAttribute('data-dec')||0), t0=null;
+      function step(ts){ if(!t0)t0=ts; var pr=Math.min((ts-t0)/1100,1); pr=1-Math.pow(1-pr,3); el.textContent=(target*pr).toFixed(dec); if(pr<1) requestAnimationFrame(step); }
+      requestAnimationFrame(step);
+    });
+  }
+  setTimeout(countUp, 900);
+  /* 左栏当前章节读数 */
+  var rn=document.getElementById('railNow');
+  if(rn && 'IntersectionObserver' in window){
+    var names={s01:'01 · 样品概况',s02:'02 · 试验履历',s03:'03 · 项目档案',s3d:'3D · 钢带悬挂系统',s04:'04 · 方法与演示',s05:'05 · 失效分析与成果',s06:'附录 · 联系与交付'};
+    var io=new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting && names[x.target.id]) rn.textContent='NOW VIEWING · '+names[x.target.id]; }); },{rootMargin:'-30% 0px -60% 0px'});
+    document.querySelectorAll('section[id]').forEach(function(s){ io.observe(s); });
+  }
+  /* 履历时间线填充 */
+  var tl=document.querySelector('.tl');
+  if(tl){
+    var fill=document.createElement('div'); fill.id='tlFill'; tl.insertBefore(fill, tl.firstChild);
+    var items=[].slice.call(tl.querySelectorAll('.tl-item')), tick=false;
+    function upd(){
+      tick=false;
+      var r=tl.getBoundingClientRect(), vh=innerHeight||800;
+      var pr=(vh*.72 - r.top)/r.height; pr=Math.max(0,Math.min(1,pr));
+      fill.style.height=(pr*Math.max(r.height-12,0))+'px';
+      items.forEach(function(it){ it.classList.toggle('passed', it.offsetTop < pr*r.height + 4); });
+    }
+    addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+    upd();
+  }
+})();
+</script>
 </body>
 </html>
