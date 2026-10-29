@@ -187,7 +187,7 @@ section{scroll-margin-top:64px}
   <span class="brand">REPORT No. LXL-2027</span>
   <a class="nl" href="#s01">01 概况</a><a class="nl" href="#s02">02 履历</a>
   <a class="nl" href="#s03">03 项目</a><a class="nl" href="#s3d">3D 模型</a><a class="nl" href="#s04">04 方法与演示</a>
-  <a class="nl" href="#s05">05 成果</a><a class="nl" href="#s06" style="color:var(--red)">↓ 简历PDF</a><a class="nl" href="#s06">附录 联系</a>
+  <a class="nl" href="#s05">05 成果</a><a class="nl" href="#s06" style="color:var(--red)">↓ 简历PDF</a><button class="nl nbtn" id="cmdkBtn" type="button">⌘K 控制台</button><button class="nl nbtn" id="themeBtn" type="button">🌙 暗色</button><button class="nl nbtn" id="sndBtn" type="button">🔇 音效</button><a class="nl" href="#s06">附录 联系</a>
 </div></nav>
 
 <div class="hero"><canvas id="heroWave" aria-hidden="true"></canvas><div class="obadge" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="cir" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><circle cx="50" cy="50" r="49" fill="rgba(11,20,29,.55)" stroke="rgba(255,255,255,.28)"/><text font-size="10.5" fill="#e8e4d8" letter-spacing="2.6" font-family="monospace"><textPath href="#cir">2027届 · 求职中 · OPEN TO WORK · 杭州 ·</textPath></text><circle cx="50" cy="50" r="4.5" fill="#c8402a"/></svg></div><div class="hero-in">
@@ -906,6 +906,124 @@ body::after{content:"";position:fixed;inset:0;z-index:85;pointer-events:none;opa
       hero.addEventListener('mouseleave',function(){ layers.forEach(function(L){ var el=hero.querySelector(L[0]); if(el) el.style.transform=''; }); });
     }
   }
+})();
+</script>
+
+<div id="cmdk" role="dialog" aria-label="命令控制台"><div class="cmdk-in">
+  <input id="cmdkInp" type="text" placeholder="输入命令：下载简历 / 复制邮箱 / 跳到04区 / 暗色模式 / 3D模型…" autocomplete="off">
+  <ul id="cmdkList"></ul>
+  <div class="cmdk-ft">↑ ↓ 选择 · Enter 执行 · Esc 关闭</div>
+</div></div>
+<div id="quickbar">
+  <a href="tel:13119997116">☎ 打电话</a>
+  <button type="button" onclick="copyText('1669869402@qq.com','邮箱')">✉ 复制邮箱</button>
+  <a href="#s06">⬇ 下载简历</a>
+</div>
+
+<style>
+.nbtn{background:none;border:none;cursor:pointer;font-family:var(--mono)}
+#cmdk{position:fixed;inset:0;z-index:120;background:rgba(9,14,20,.55);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:11vh 14px 14px}
+#cmdk.on{display:flex}
+.cmdk-in{width:min(580px,94vw);background:var(--card);border:1.5px solid var(--ink);border-top:4px solid #c8402a;border-radius:8px;box-shadow:0 30px 60px rgba(0,0,0,.35);overflow:hidden}
+#cmdkInp{width:100%;box-sizing:border-box;border:none;outline:none;padding:15px 18px;font-size:16px;font-family:inherit;background:transparent;color:inherit;border-bottom:1px solid var(--line)}
+#cmdkList{list-style:none;margin:0;padding:6px;max-height:46vh;overflow-y:auto}
+#cmdkList li{padding:10px 12px;border-radius:5px;font-size:14.5px;cursor:pointer;display:flex;justify-content:space-between;gap:10px}
+#cmdkList li small{color:var(--sub);font-family:var(--mono);font-size:11.5px}
+#cmdkList li.act{background:#17222e;color:#f2efe6}
+#cmdkList li.act small{color:#9fd8bb}
+.cmdk-ft{padding:8px 14px;font-family:var(--mono);font-size:11px;color:var(--sub);border-top:1px solid var(--line)}
+#quickbar{display:none}
+@media(max-width:760px){
+  #quickbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:45;background:rgba(16,24,34,.96);backdrop-filter:blur(8px);border-top:2px solid #c8402a}
+  #quickbar a,#quickbar button{flex:1;text-align:center;padding:13px 4px;color:#f2efe6;font-size:14px;text-decoration:none;background:none;border:none;font-family:inherit;cursor:pointer}
+  #quickbar a+a,#quickbar button{border-left:1px solid rgba(255,255,255,.14)}
+  body{padding-bottom:52px}
+}
+html[data-theme="dark"] body{background:#0c131b;color:#d9e2ea}
+html[data-theme="dark"] section{background:#101a26;border-color:#2a3c50}
+html[data-theme="dark"] h2,html[data-theme="dark"] h3{color:#eef3f7}
+html[data-theme="dark"] nav{background:rgba(12,19,27,.93);border-bottom-color:#3a4c61}
+html[data-theme="dark"] nav .brand{color:#e8eef4}
+html[data-theme="dark"] nav a.nl{color:#a9b8c6}
+html[data-theme="dark"] .pcard,html[data-theme="dark"] .award{background:#131f2d;border-color:#2a3c50}
+html[data-theme="dark"] .lab{background:#131f2d;border-color:#2a3c50;color:#d9e2ea}
+html[data-theme="dark"] .spec{border-color:#3a4c61}
+html[data-theme="dark"] .spec .cell{border-color:#22344a}
+html[data-theme="dark"] .view{background-color:#0c131b;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px)}
+html[data-theme="dark"] .vcard,html[data-theme="dark"] .vhero{background:#101a26;color:#d9e2ea;border-color:#2a3c50}
+html[data-theme="dark"] .copybtn{background:#16222e;color:#d9e2ea;border-color:#3a5069}
+html[data-theme="dark"] #progLbl{background:rgba(16,26,38,.92);color:#a9b8c6;border-color:#2a3c50}
+html[data-theme="dark"] footer{color:#7e8fa0}
+html[data-theme="dark"] #s01::before,html[data-theme="dark"] #s02::before,html[data-theme="dark"] #s03::before,html[data-theme="dark"] #s05::before,html[data-theme="dark"] #s06::before{-webkit-text-stroke-color:rgba(255,255,255,.08)}
+html[data-theme="dark"] .cmdk-in{background:#101a26;color:#d9e2ea;border-color:#3a4c61}
+html[data-theme="dark"] #cmdkInp{border-bottom-color:#2a3c50;color:#eef3f7}
+@media print{#quickbar,#cmdk{display:none!important}}
+</style>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  /* ---------- 暗色模式 ---------- */
+  var themeBtn=$('#themeBtn');
+  function setTheme(t){ document.documentElement.setAttribute('data-theme',t); try{localStorage.setItem('lxltheme',t)}catch(e){} if(themeBtn) themeBtn.textContent = t==='dark' ? '☀️ 纸面' : '🌙 暗色'; }
+  var saved='light'; try{ saved=localStorage.getItem('lxltheme')||'light'; }catch(e){}
+  setTheme(saved);
+  if(themeBtn) themeBtn.addEventListener('click',function(){ setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'); blip(520,.06); });
+  /* ---------- 音效（默认关） ---------- */
+  var snd=false; try{ snd=localStorage.getItem('lxlsnd')==='1'; }catch(e){}
+  var sndBtn=$('#sndBtn'), AC=null;
+  function paintSnd(){ if(sndBtn) sndBtn.textContent = snd ? '🔊 音效' : '🔇 音效'; }
+  paintSnd();
+  function ac(){ if(!AC){ try{ AC=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } if(AC&&AC.state==='suspended') AC.resume(); return AC; }
+  function tone(f,d,type,g,slideTo){ if(!snd) return; var c=ac(); if(!c) return; var o=c.createOscillator(), gn=c.createGain(); o.type=type||'square'; o.frequency.setValueAtTime(f,c.currentTime); if(slideTo) o.frequency.exponentialRampToValueAtTime(slideTo,c.currentTime+d); gn.gain.setValueAtTime(g||.04,c.currentTime); gn.gain.exponentialRampToValueAtTime(.0001,c.currentTime+d); o.connect(gn); gn.connect(c.destination); o.start(); o.stop(c.currentTime+d); }
+  function blip(f,d){ tone(f||660,d||.05,'square',.03); }
+  if(sndBtn) sndBtn.addEventListener('click',function(){ snd=!snd; try{localStorage.setItem('lxlsnd',snd?'1':'0')}catch(e){} paintSnd(); if(snd) blip(880,.07); });
+  document.addEventListener('click',function(e){ if(e.target.closest('button,a.nl,.pcard,.bar-row')) blip(600,.035); });
+  if(window.copyText){ var _ct=window.copyText; window.copyText=function(t,l){ _ct(t,l); tone(880,.07,'square',.04,1320); }; }
+  if(window.scopeMode){ var _sm=window.scopeMode; window.scopeMode=function(m){ _sm(m); tone(300,.16,'sawtooth',.03,720); }; }
+  /* ---------- 命令面板 ---------- */
+  var cmdk=$('#cmdk'), inp=$('#cmdkInp'), list=$('#cmdkList'), actIdx=0, cur=[];
+  function go(hash){ var el=document.querySelector(hash); if(el) el.scrollIntoView({behavior:'smooth'}); }
+  function dl(f){ var a=document.createElement('a'); a.href=f; a.setAttribute('download',''); document.body.appendChild(a); a.click(); a.remove(); }
+  var ACTIONS=[
+    {t:'跳到 01 · 样品概况', s:'#s01', run:function(){go('#s01')}},
+    {t:'跳到 02 · 试验履历', s:'#s02', run:function(){go('#s02')}},
+    {t:'跳到 03 · 项目档案', s:'#s03', run:function(){go('#s03')}},
+    {t:'跳到 3D · 钢带悬挂系统模型', s:'#s3d', run:function(){go('#s3d')}},
+    {t:'跳到 04 · 方法与演示', s:'#s04', run:function(){go('#s04')}},
+    {t:'跳到 05 · 失效分析与成果', s:'#s05', run:function(){go('#s05')}},
+    {t:'跳到 附录 · 联系与下载', s:'#s06', run:function(){go('#s06')}},
+    {t:'打开 结构工程师版报告', s:'view', run:function(){openView('dir-struct')}},
+    {t:'打开 可靠性工程师版报告', s:'view', run:function(){openView('dir-rel')}},
+    {t:'下载简历 PDF · 结构工程师版', s:'pdf', run:function(){dl('resume-structural.pdf')}},
+    {t:'下载简历 PDF · 可靠性测试工程师版', s:'pdf', run:function(){dl('resume-reliability.pdf')}},
+    {t:'复制邮箱', s:'copy', run:function(){copyText('1669869402@qq.com','邮箱')}},
+    {t:'复制电话', s:'copy', run:function(){copyText('13119997116','电话')}},
+    {t:'切换 暗色 / 纸面模式', s:'theme', run:function(){themeBtn&&themeBtn.click()}},
+    {t:'开启 / 关闭 音效', s:'sound', run:function(){sndBtn&&sndBtn.click()}}
+  ];
+  function render(q){
+    cur=ACTIONS.filter(function(a){ return !q || a.t.toLowerCase().indexOf(q.toLowerCase())>-1; });
+    actIdx=0;
+    list.innerHTML=cur.map(function(a,i){ return '<li data-i="'+i+'" class="'+(i===actIdx?'act':'')+'"><span>'+a.t+'</span><small>'+a.s+'</small></li>'; }).join('') || '<li>没有匹配的命令</li>';
+    list.querySelectorAll('li[data-i]').forEach(function(li){ li.addEventListener('click',function(){ exec(+li.getAttribute('data-i')); }); });
+  }
+  function paintAct(){ list.querySelectorAll('li').forEach(function(li,i){ li.classList.toggle('act',i===actIdx); }); }
+  function exec(i){ var a=cur[i]; closeCmdk(); if(a) setTimeout(function(){a.run();},30); }
+  function openCmdk(){ cmdk.classList.add('on'); inp.value=''; render(''); setTimeout(function(){inp.focus();},30); blip(740,.05); }
+  function closeCmdk(){ cmdk.classList.remove('on'); }
+  var cb=$('#cmdkBtn'); if(cb) cb.addEventListener('click',openCmdk);
+  cmdk.addEventListener('click',function(e){ if(e.target===cmdk) closeCmdk(); });
+  inp.addEventListener('input',function(){ render(inp.value.trim()); });
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){ e.preventDefault(); actIdx=Math.min(actIdx+1,cur.length-1); paintAct(); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); actIdx=Math.max(actIdx-1,0); paintAct(); }
+    else if(e.key==='Enter'){ exec(actIdx); }
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); cmdk.classList.contains('on')?closeCmdk():openCmdk(); }
+    else if(e.key==='Escape'){ closeCmdk(); }
+  });
 })();
 </script>
 </body>
