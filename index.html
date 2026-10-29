@@ -62,6 +62,7 @@ button.chip:hover{border-color:var(--sig);color:var(--sig)}
 </style>
 </head>
 <body>
+<div id="boot" role="presentation"><div class="boot-in"><div class="bl b1">PERSONAL RELIABILITY TEST REPORT</div><div class="bl b2">SYSTEM CHECK · 信号通道 OK · 数据链路 OK · 演示模块 OK</div><div class="bl b3">No. LXL-2027-001</div><div class="bl b4">点 击 任 意 处 跳 过</div></div></div>
 <div id="prog"></div><div id="progLbl">试验进度 0%</div>
 <style>
 .wrap{max-width:980px;margin:0 auto;padding:30px 16px 70px}
@@ -189,7 +190,7 @@ section{scroll-margin-top:64px}
   <a class="nl" href="#s05">05 成果</a><a class="nl" href="#s06" style="color:var(--red)">↓ 简历PDF</a><a class="nl" href="#s06">附录 联系</a>
 </div></nav>
 
-<div class="hero"><div class="obadge" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="cir" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><circle cx="50" cy="50" r="49" fill="rgba(11,20,29,.55)" stroke="rgba(255,255,255,.28)"/><text font-size="10.5" fill="#e8e4d8" letter-spacing="2.6" font-family="monospace"><textPath href="#cir">2027届 · 求职中 · OPEN TO WORK · 杭州 ·</textPath></text><circle cx="50" cy="50" r="4.5" fill="#c8402a"/></svg></div><div class="hero-in">
+<div class="hero"><canvas id="heroWave" aria-hidden="true"></canvas><div class="obadge" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="cir" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><circle cx="50" cy="50" r="49" fill="rgba(11,20,29,.55)" stroke="rgba(255,255,255,.28)"/><text font-size="10.5" fill="#e8e4d8" letter-spacing="2.6" font-family="monospace"><textPath href="#cir">2027届 · 求职中 · OPEN TO WORK · 杭州 ·</textPath></text><circle cx="50" cy="50" r="4.5" fill="#c8402a"/></svg></div><div class="hero-in">
   <div class="hero-top"><span>可靠性试验报告 · PERSONAL RELIABILITY TEST REPORT</span><span>报告编号 LXL-2027-001</span></div>
   <div class="hero-grid">
     <div>
@@ -229,6 +230,7 @@ section{scroll-margin-top:64px}
 </div></div>
 <div class="wrap">
 
+<div class="ticker" aria-hidden="true"><div class="ticker-in"><span>可靠性工程 <b>✦</b> FMEA / FTA / MONTE CARLO <b>✦</b> 第一作者 SCI ×2 · EI ×1 <b>✦</b> 国家奖学金 <b>✦</b> SOLIDWORKS 参数化建模 <b>✦</b> 85℃ / 85%RH / 96H 温湿老化 <b>✦</b> ANSYS / APDL <b>✦</b> MATLAB 信号处理 <b>✦</b> 钢带断丝损伤检测 <b>✦</b> </span><span>可靠性工程 <b>✦</b> FMEA / FTA / MONTE CARLO <b>✦</b> 第一作者 SCI ×2 · EI ×1 <b>✦</b> 国家奖学金 <b>✦</b> SOLIDWORKS 参数化建模 <b>✦</b> 85℃ / 85%RH / 96H 温湿老化 <b>✦</b> ANSYS / APDL <b>✦</b> MATLAB 信号处理 <b>✦</b> 钢带断丝损伤检测 <b>✦</b> </span></div></div>
 <section id="s01">
   <div class="rh"><span class="rno">01</span><div><div class="rlab">TEST ITEM 01 · SPECIMEN OVERVIEW</div><h2>样品概况与关键参数</h2></div></div>
   <div class="spec">
@@ -705,6 +707,89 @@ nav a.nl.act{color:#c8402a;font-weight:700}
     var links={};document.querySelectorAll('nav a.nl').forEach(function(a){links[a.getAttribute('href')]=a;});
     var io2=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){document.querySelectorAll('nav a.nl').forEach(function(a){a.classList.remove('act')});var a=links['#'+x.target.id];if(a)a.classList.add('act');}});},{rootMargin:'-38% 0px -55% 0px'});
     document.querySelectorAll('section[id]').forEach(function(s){io2.observe(s);});
+  }
+})();
+</script>
+
+<style>
+#boot{position:fixed;inset:0;background:#0b141d;z-index:200;display:flex;align-items:center;justify-content:center;transition:opacity .55s ease}
+#boot.off{opacity:0;pointer-events:none}
+.boot-in{font-family:var(--mono);text-align:center;padding:20px}
+.boot-in .bl{opacity:0;animation:bf .45s ease forwards}
+.boot-in .b1{font-size:12.5px;letter-spacing:4px;color:#8fa3b5}
+.boot-in .b2{font-size:13px;letter-spacing:2px;color:#3ce88f;margin-top:14px;animation-delay:.3s}
+.boot-in .b3{font-size:clamp(24px,5vw,38px);letter-spacing:3px;color:#f2efe6;margin-top:12px;font-weight:700;animation-delay:.6s}
+.boot-in .b4{font-size:11px;letter-spacing:3px;color:#5d7185;margin-top:22px;animation-delay:1s}
+@keyframes bf{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#heroWave{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.5;pointer-events:none}
+.hero-in{position:relative;z-index:2}
+.ticker{background:#17222e;color:#efe9dc;overflow:hidden;border-bottom:3px solid #c8402a;padding:10px 0}
+.ticker-in{display:inline-flex;white-space:nowrap;animation:tick 38s linear infinite;will-change:transform}
+.ticker span{font-family:var(--mono);font-size:13.5px;letter-spacing:2px}
+.ticker b{color:#c8402a;font-weight:400;padding:0 6px}
+.ticker:hover .ticker-in{animation-play-state:paused}
+@keyframes tick{to{transform:translateX(-50%)}}
+#cring{position:fixed;left:0;top:0;width:30px;height:30px;border:1.5px solid rgba(200,64,42,.7);border-radius:50%;pointer-events:none;z-index:300;display:none}
+#cring::after{content:"";position:absolute;left:50%;top:50%;width:4px;height:4px;margin:-2px;background:#c8402a;border-radius:50%}
+#cring.big{width:54px;height:54px;border-color:rgba(200,64,42,.95)}
+@media(pointer:fine){#cring{display:block}}
+body::after{content:"";position:fixed;inset:0;z-index:85;pointer-events:none;opacity:.05;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E")}
+.rh h2{font-size:clamp(28px,4.6vw,44px)}
+.rh .rno{font-size:clamp(42px,6vw,60px)}
+.rh{padding-bottom:8px}
+.rh::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:100%;background:linear-gradient(90deg,#c8402a,rgba(200,64,42,0));transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.22,.8,.3,1) .15s}
+.rh.in::after{transform:scaleX(1)}
+#s04{background:#0b141d;border-color:#0b141d;color:#d7e0e9}
+#s04 h2{color:#fff}
+#s04::before{-webkit-text-stroke-color:rgba(255,255,255,.09)}
+#s04 .bar-row .bl{color:#d7e0e9}
+#s04 .bar{background:#22384e}
+#s04 .hint{color:#ffb224}
+#s04 .cond .c{background:#101e2c;border-color:#2a3f55;color:#d7e0e9}
+#s04 .cond .c div{color:#93a5b5}
+#s04 .tagcloud span{background:transparent;border-color:#33506e;color:#b9c9d8}
+#s04>h3{color:#e8eef4}
+@media print{#boot,.ticker,#cring,#heroWave{display:none!important}}
+@media (prefers-reduced-motion: reduce){.ticker-in{animation:none}#boot{display:none}}
+</style>
+
+<script>
+(function(){
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* 开机自检 */
+  var boot=document.getElementById('boot');
+  function killBoot(){ if(!boot) return; boot.classList.add('off'); setTimeout(function(){boot&&boot.remove();boot=null;},650); }
+  if(boot){ if(RM || sessionStorage.getItem('lxlboot')){ boot.remove(); boot=null; }
+    else{ sessionStorage.setItem('lxlboot','1'); setTimeout(killBoot,1250); boot.addEventListener('click',killBoot); } }
+  /* hero 背景波形 */
+  var cv=document.getElementById('heroWave');
+  if(cv){ var ctx=cv.getContext('2d'), W=0,Hh=0,t=0,run=true;
+    function size(){ var r=cv.parentElement.getBoundingClientRect(), d=Math.min(devicePixelRatio||1,1.5); W=r.width; Hh=r.height; cv.width=W*d; cv.height=Hh*d; ctx.setTransform(d,0,0,d,0,0); }
+    function wave(color,amp,fr,sp,off){ ctx.beginPath(); for(var x=0;x<=W;x+=6){ var y=Hh*.62 + Math.sin(x*fr + t*sp + off)*amp + Math.sin(x*fr*2.7 - t*sp*1.6 + off)*amp*.45; x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);} ctx.strokeStyle=color; ctx.lineWidth=1.5; ctx.stroke(); }
+    function draw(){ ctx.clearRect(0,0,W,Hh); wave('rgba(60,232,143,.32)',26,.011,1,0); wave('rgba(255,178,36,.13)',34,.007,.6,2.4); t+=.014; if(run&&!RM) requestAnimationFrame(draw); }
+    size(); addEventListener('resize',size); draw();
+    if('IntersectionObserver' in window) new IntersectionObserver(function(e){ run=e[0].isIntersecting; if(run&&!RM) requestAnimationFrame(draw); }).observe(cv);
+  }
+  var FINE = matchMedia('(pointer: fine)').matches;
+  if(FINE && !RM){
+    /* 光标环 */
+    var ring=document.createElement('div'); ring.id='cring'; document.body.appendChild(ring);
+    var mx=-100,my=-100,rx=-100,ry=-100;
+    addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;});
+    (function loop(){ rx+=(mx-rx)*.2; ry+=(my-ry)*.2; ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)'; requestAnimationFrame(loop); })();
+    document.addEventListener('mouseover',function(e){ if(e.target.closest('a,button,.pcard,.bar-row,[onclick]')) ring.classList.add('big'); });
+    document.addEventListener('mouseout',function(e){ if(e.target.closest('a,button,.pcard,.bar-row,[onclick]')) ring.classList.remove('big'); });
+    /* 磁吸按钮 */
+    document.querySelectorAll('.hero .hbtn').forEach(function(b){
+      b.addEventListener('mousemove',function(e){ var r=b.getBoundingClientRect(), dx=(e.clientX-r.left-r.width/2)/r.width, dy=(e.clientY-r.top-r.height/2)/r.height; b.style.transform='translate('+(dx*7)+'px,'+(dy*5)+'px)'; });
+      b.addEventListener('mouseleave',function(){ b.style.transform=''; });
+    });
+    /* 项目卡 3D 倾斜 */
+    document.querySelectorAll('.pcard').forEach(function(c){
+      c.addEventListener('mouseenter',function(){ c.style.transition='transform .15s ease-out, box-shadow .25s'; c.style.transitionDelay='0ms'; });
+      c.addEventListener('mousemove',function(e){ var r=c.getBoundingClientRect(), px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5; c.style.transform='perspective(720px) rotateX('+(-py*7)+'deg) rotateY('+(px*7)+'deg) translateY(-4px)'; });
+      c.addEventListener('mouseleave',function(){ c.style.transform=''; setTimeout(function(){c.style.transition='';c.style.transitionDelay='';},200); });
+    });
   }
 })();
 </script>
