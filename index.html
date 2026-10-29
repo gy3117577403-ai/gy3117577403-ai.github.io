@@ -12,6 +12,8 @@
 <meta property="og:url" content="https://lengxiaoli.is-a.dev/">
 <meta property="og:image" content="https://lengxiaoli.is-a.dev/og.png">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
 <meta name="description" content="冷孝丽，2027届浙江理工大学机械工程硕士（可靠性工程），第一作者SCI 2篇、EI 1篇，国家奖学金。求职：机械结构工程师 / 可靠性测试工程师（杭州及周边）。">
 <style>
 :root{--paper:#f3f2ec;--card:#fdfdfa;--ink:#17222e;--sub:#5d6874;--line:#d9d7cc;--panel:#0b141d;--panel2:#101e2c;--sig:#3ce88f;--amber:#ffb224;--red:#c8402a;--acc:#1d4ed8;--mono:ui-monospace,'SF Mono',Consolas,'Courier New',monospace}
@@ -1026,5 +1028,29 @@ html[data-theme="dark"] #cmdkInp{border-bottom-color:#2a3c50;color:#eef3f7}
   });
 })();
 </script>
+
+<style>
+/* ===== v13 分屏骨架：左侧固定仪表栏 + 右侧滚动档案 ===== */
+body{font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif}
+h1,.rh h2,.vhero h3,.boot-in .b3{font-family:'Noto Serif SC','Noto Sans SC',serif}
+@media(min-width:1024px){
+  body{display:grid;grid-template-columns:minmax(390px,35%) 1fr;column-gap:0}
+  nav{grid-column:1/-1}
+  .hero{grid-column:1;grid-row:2/span 40;position:sticky;top:49px;height:calc(100vh - 49px);overflow-y:auto;overflow-x:hidden;border-bottom:none;border-right:4px solid var(--ink);scrollbar-width:thin;scrollbar-color:#33506e transparent}
+  .hero::-webkit-scrollbar{width:5px}
+  .hero::-webkit-scrollbar-thumb{background:#33506e;border-radius:3px}
+  .hero-in{max-width:none;padding:38px 34px 46px}
+  .hero-grid{grid-template-columns:1fr;gap:20px}
+  .hero h1{font-size:clamp(54px,4.8vw,86px)}
+  .scopeBox canvas{width:100%;height:auto}
+  .obadge{width:88px;height:88px;right:18px;bottom:18px}
+  .ticker{grid-column:2;margin:24px 30px 0 4px}
+  .wrap{grid-column:2;max-width:none;width:auto;margin:0;padding:22px 30px 80px 4px}
+  section{box-shadow:7px 7px 0 rgba(23,34,46,.08)}
+}
+@media(max-width:1023px){
+  .hero{position:relative;height:auto;overflow:visible}
+}
+</style>
 </body>
 </html>
