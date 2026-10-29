@@ -61,10 +61,16 @@ h1{font-size:44px;letter-spacing:3px;line-height:1.2}
 .chip{font-family:var(--mono);font-size:12.5px;border:1px solid #2b4258;color:#cfe0ef;border-radius:4px;padding:4px 11px;background:var(--panel2)}
 button.chip{cursor:pointer}
 button.chip:hover{border-color:var(--sig);color:var(--sig)}
+
+.d3wrap{position:relative;background:radial-gradient(120% 130% at 50% 0%,#132638,#0b141d);overflow:hidden}
+#d3cv{display:block;width:100%;height:450px;touch-action:pan-y;cursor:grab}
+@media(max-width:640px){#d3cv{height:340px}}
+.d3hint{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:#9fd8bb;border:1px solid rgba(60,232,143,.4);padding:4px 10px;border-radius:4px;background:rgba(11,20,29,.55)}
+.d3cap{position:absolute;left:0;right:0;bottom:0;padding:26px 18px 12px;font-size:13.5px;line-height:1.75;color:#c8d4df;background:linear-gradient(transparent,rgba(5,10,16,.88) 55%)}
 </style>
 </head>
 <body>
-<div id="boot" role="presentation"><div class="boot-in"><div class="bl b1">PERSONAL RELIABILITY TEST REPORT</div><div class="bl b2">SYSTEM CHECK · 信号通道 OK · 数据链路 OK · 演示模块 OK</div><div class="bl b3">No. LXL-2027-001</div><div class="bl b4">点 击 任 意 处 跳 过</div></div></div>
+
 <div id="prog"></div><div id="progLbl">试验进度 0%</div>
 <style>
 .wrap{max-width:980px;margin:0 auto;padding:30px 16px 70px}
@@ -189,12 +195,12 @@ section{scroll-margin-top:64px}
   <span class="brand">REPORT No. LXL-2027</span>
   <a class="nl" href="#s01">01 概况</a><a class="nl" href="#s02">02 履历</a>
   <a class="nl" href="#s03">03 项目</a><a class="nl" href="#s3d">3D 模型</a><a class="nl" href="#s04">04 方法与演示</a>
-  <a class="nl" href="#s05">05 成果</a><a class="nl" href="#s06" style="color:var(--red)">↓ 简历PDF</a><button class="nl nbtn" id="cmdkBtn" type="button">⌘K 控制台</button><button class="nl nbtn" id="themeBtn" type="button">🌙 暗色</button><button class="nl nbtn" id="sndBtn" type="button">🔇 音效</button><a class="nl" href="#s06">附录 联系</a>
+  <a class="nl" href="#s05">05 成果</a><a class="nl" href="#s06" style="color:var(--red)">↓ 简历PDF</a><a class="nl" href="#s06">附录 联系</a>
 </div></nav>
 
-<div class="hero"><canvas id="heroWave" aria-hidden="true"></canvas><div class="obadge" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="cir" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><circle cx="50" cy="50" r="49" fill="rgba(11,20,29,.55)" stroke="rgba(255,255,255,.28)"/><text font-size="10.5" fill="#e8e4d8" letter-spacing="2.6" font-family="monospace"><textPath href="#cir">2027届 · 求职中 · OPEN TO WORK · 杭州 ·</textPath></text><circle cx="50" cy="50" r="4.5" fill="#c8402a"/></svg></div><div class="hero-in">
+<div class="hero"><div class="hero-in">
   <div class="hero-top"><span>可靠性试验报告 · PERSONAL RELIABILITY TEST REPORT</span><span>报告编号 LXL-2027-001</span></div>
-      <div id="railNow">NOW VIEWING · 报告总览</div>
+      
   <div class="hero-grid">
     <div>
       <h1>冷孝丽</h1>
@@ -228,18 +234,13 @@ section{scroll-margin-top:64px}
         <button class="chip" onclick="copyText('1669869402@qq.com','邮箱')">✉ 1669869402@qq.com（复制）</button>
         <button class="chip" onclick="copyText('13119997116','电话')">☎ 13119997116（复制）</button>
       </div>
-      <div class="railStats">
-        <div><b data-cnt="3.71" data-dec="2">0</b><span>GPA / 4.0 · 专业前 5%</span></div>
-        <div><b data-cnt="3">0</b><span>第一作者论文 SCI×2 EI×1</span></div>
-        <div><b data-cnt="3">0</b><span>国家级 / 省级课题</span></div>
-        <div><b data-cnt="2">0</b><span>段对口研发实习</span></div>
-      </div>
+      
     </div>
   </div>
 </div></div>
 <div class="wrap">
 
-<div class="ticker" aria-hidden="true"><div class="ticker-in"><span>可靠性工程 <b>✦</b> FMEA / FTA / MONTE CARLO <b>✦</b> 第一作者 SCI ×2 · EI ×1 <b>✦</b> 国家奖学金 <b>✦</b> SOLIDWORKS 参数化建模 <b>✦</b> 85℃ / 85%RH / 96H 温湿老化 <b>✦</b> ANSYS / APDL <b>✦</b> MATLAB 信号处理 <b>✦</b> 钢带断丝损伤检测 <b>✦</b> </span><span>可靠性工程 <b>✦</b> FMEA / FTA / MONTE CARLO <b>✦</b> 第一作者 SCI ×2 · EI ×1 <b>✦</b> 国家奖学金 <b>✦</b> SOLIDWORKS 参数化建模 <b>✦</b> 85℃ / 85%RH / 96H 温湿老化 <b>✦</b> ANSYS / APDL <b>✦</b> MATLAB 信号处理 <b>✦</b> 钢带断丝损伤检测 <b>✦</b> </span></div></div>
+
 <section id="s01">
   <div class="rh"><span class="rno">01</span><div><div class="rlab">TEST ITEM 01 · SPECIMEN OVERVIEW</div><h2>样品概况与关键参数</h2></div></div>
   <div class="spec">
@@ -307,7 +308,7 @@ section{scroll-margin-top:64px}
   </div>
 </section>
 
-<div class="divider" aria-hidden="true"><span>PROJECT FILES · 项目档案 · PROJECT FILES · 项目档案 ·</span></div>
+
 <section id="s03">
   <div class="rh"><span class="rno">03</span><div><div class="rlab">TEST ITEM 03 · TEST PROJECTS</div><h2>试验项目档案（点击进入项目报告）</h2></div></div>
   <div class="cards">
@@ -320,8 +321,8 @@ section{scroll-margin-top:64px}
     <div class="pcard" onclick="openView('proj-mine')"><span class="pr">FILE-04 · 校企合作项目</span><div class="pt">矿车自动摘挂钩机构设计</div>
       <ul><li>学生负责人：动作分解与功能定义</li><li>电机驱动执行机构、末端抓夹总装设计</li><li>运动仿真与空间干涉检查</li></ul><div class="enter">打开项目报告 →</div></div>
   </div>
-  <div class="hprog"><i id="hprogFill"></i></div>
-  <div class="hhint">← 拖动查看全部 4 个项目档案 →</div>
+  
+  
 </section>
 
 <section id="s3d">
@@ -375,7 +376,7 @@ section{scroll-margin-top:64px}
   </div>
 </section>
 
-<div class="divider" aria-hidden="true"><span>FAILURE ANALYSIS · 失效分析 · FAILURE ANALYSIS · 失效分析 ·</span></div>
+
 <section id="s05">
   <div class="rh"><span class="rno">05</span><div><div class="rlab">TEST ITEM 05 · ANALYSIS & RECORDS</div><h2>失效分析与成果记录</h2></div></div>
   <h3 style="font-family:var(--mono);font-size:14px;letter-spacing:1.5px;margin-bottom:10px">FMEA 摘要 · 钢带悬挂系统（出自我的省重点研发子课题，点表头按风险排序）</h3>
@@ -694,128 +695,68 @@ addEventListener('scroll',()=>{tt2.classList.toggle('show',scrollY>500);
 tt2.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 </script>
 
-<style>
-::selection{background:#c8402a;color:#fff}
-body::-webkit-scrollbar{width:10px}body::-webkit-scrollbar-thumb{background:#17222e;border-radius:5px}body::-webkit-scrollbar-track{background:#e9e7dc}
-.hero{position:relative;overflow:hidden}
-.hero::before{content:"可靠性工程";position:absolute;right:1%;top:54%;transform:translateY(-50%);writing-mode:vertical-rl;font-size:148px;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.055);letter-spacing:.12em;pointer-events:none}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 42%,rgba(60,232,143,.07) 50%,transparent 58%);transform:translateX(-110%);animation:hsweep 2.4s ease .35s 1 forwards;pointer-events:none}
-@keyframes hsweep{to{transform:translateX(110%)}}
-.hero h1{font-size:clamp(56px,9vw,102px);letter-spacing:.03em;position:relative;display:inline-block}
-.hero h1::after{content:"";position:absolute;left:2px;bottom:-8px;height:5px;width:0;background:#c8402a;animation:hbar 1s cubic-bezier(.22,.8,.3,1) .5s forwards}
-@keyframes hbar{to{width:calc(100% - 4px)}}
-.obadge{position:absolute;right:28px;bottom:28px;width:106px;height:106px;animation:ospin 16s linear infinite;z-index:3;pointer-events:none}
-@keyframes ospin{to{transform:rotate(360deg)}}
-@media(max-width:760px){.obadge{display:none}.hero::before{font-size:96px}}
-.sc-lbl b::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#3ce88f;margin-right:6px;animation:plive 1.6s infinite}
-@keyframes plive{0%,100%{opacity:1}50%{opacity:.2}}
-section{position:relative}
-#s01::before{content:"01"}#s02::before{content:"02"}#s03::before{content:"03"}#s04::before{content:"04"}#s05::before{content:"05"}#s06::before{content:"附"}
-#s01::before,#s02::before,#s03::before,#s04::before,#s05::before,#s06::before{position:absolute;top:2px;right:16px;font-family:var(--mono);font-size:104px;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(23,34,46,.055);pointer-events:none;line-height:1;z-index:0}
-.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.8,.3,1)}
-.rv.in{opacity:1;transform:none}
-@media(hover:hover){.pcard,.award{transition:transform .25s ease,box-shadow .25s ease}.pcard:hover,.award:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(23,34,46,.13)}.hbtn{transition:transform .25s ease}.hbtn:hover{transform:translateY(-2px)}}
-nav a.nl.act{color:#c8402a;font-weight:700}
-@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
-</style>
-
-<script>
-(function(){
-  var els=[].slice.call(document.querySelectorAll('.rh,.pcard,.award,.tl-item,.spec,.plate'));
-  els.forEach(function(e,i){e.classList.add('rv');e.style.transitionDelay=((i%3)*70)+'ms';});
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});}
-  else{
-    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.1});
-    els.forEach(function(e){io.observe(e);});
-    var links={};document.querySelectorAll('nav a.nl').forEach(function(a){links[a.getAttribute('href')]=a;});
-    var io2=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){document.querySelectorAll('nav a.nl').forEach(function(a){a.classList.remove('act')});var a=links['#'+x.target.id];if(a)a.classList.add('act');}});},{rootMargin:'-38% 0px -55% 0px'});
-    document.querySelectorAll('section[id]').forEach(function(s){io2.observe(s);});
-  }
-})();
-</script>
 
 <style>
-#boot{position:fixed;inset:0;background:#0b141d;z-index:200;display:flex;align-items:center;justify-content:center;transition:opacity .55s ease}
-#boot.off{opacity:0;pointer-events:none}
-.boot-in{font-family:var(--mono);text-align:center;padding:20px}
-.boot-in .bl{opacity:0;animation:bf .45s ease forwards}
-.boot-in .b1{font-size:12.5px;letter-spacing:4px;color:#8fa3b5}
-.boot-in .b2{font-size:13px;letter-spacing:2px;color:#3ce88f;margin-top:14px;animation-delay:.3s}
-.boot-in .b3{font-size:clamp(24px,5vw,38px);letter-spacing:3px;color:#f2efe6;margin-top:12px;font-weight:700;animation-delay:.6s}
-.boot-in .b4{font-size:11px;letter-spacing:3px;color:#5d7185;margin-top:22px;animation-delay:1s}
-@keyframes bf{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-#heroWave{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.5;pointer-events:none}
-.hero-in{position:relative;z-index:2}
-.ticker{background:#17222e;color:#efe9dc;overflow:hidden;border-bottom:3px solid #c8402a;padding:10px 0}
-.ticker-in{display:inline-flex;white-space:nowrap;animation:tick 38s linear infinite;will-change:transform}
-.ticker span{font-family:var(--mono);font-size:13.5px;letter-spacing:2px}
-.ticker b{color:#c8402a;font-weight:400;padding:0 6px}
-.ticker:hover .ticker-in{animation-play-state:paused}
-@keyframes tick{to{transform:translateX(-50%)}}
-#cring{position:fixed;left:0;top:0;width:30px;height:30px;border:1.5px solid rgba(200,64,42,.7);border-radius:50%;pointer-events:none;z-index:300;display:none}
-#cring::after{content:"";position:absolute;left:50%;top:50%;width:4px;height:4px;margin:-2px;background:#c8402a;border-radius:50%}
-#cring.big{width:54px;height:54px;border-color:rgba(200,64,42,.95)}
-@media(pointer:fine){#cring{display:block}}
-body::after{content:"";position:fixed;inset:0;z-index:85;pointer-events:none;opacity:.05;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E")}
-.rh h2{font-size:clamp(28px,4.6vw,44px)}
-.rh .rno{font-size:clamp(42px,6vw,60px)}
-.rh{padding-bottom:8px}
-.rh::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:100%;background:linear-gradient(90deg,#c8402a,rgba(200,64,42,0));transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.22,.8,.3,1) .15s}
-.rh.in::after{transform:scaleX(1)}
-#s04{background:#0b141d;border-color:#0b141d;color:#d7e0e9}
-#s04 h2{color:#fff}
-#s04::before{-webkit-text-stroke-color:rgba(255,255,255,.09)}
-#s04 .bar-row .bl{color:#d7e0e9}
-#s04 .bar{background:#22384e}
-#s04 .hint{color:#ffb224}
-#s04 .cond .c{background:#101e2c;border-color:#2a3f55;color:#d7e0e9}
-#s04 .cond .c div{color:#93a5b5}
-#s04 .tagcloud span{background:transparent;border-color:#33506e;color:#b9c9d8}
-#s04>h3{color:#e8eef4}
-@media print{#boot,.ticker,#cring,#heroWave{display:none!important}}
-@media (prefers-reduced-motion: reduce){.ticker-in{animation:none}#boot{display:none}}
+/* ===== v16 静 · 简 —— 全新视觉系统 ===== */
+:root{--paper:#faf9f5;--card:#ffffff;--ink:#1c2530;--sub:#68727e;--line:#e5e2d6;--red:#bc3a26;--panel:#101c28}
+html{scroll-behavior:smooth}
+body{background:var(--paper);background-image:none;color:var(--ink);font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif}
+::selection{background:#bc3a26;color:#fff}
+#progLbl{display:none}
+#prog{height:2px}
+nav{background:rgba(250,249,245,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.nav-in{max-width:900px}
+nav .brand{color:var(--ink);letter-spacing:2px}
+nav a.nl{color:var(--sub)} nav a.nl:hover{color:var(--ink)} nav a.nl.act{color:var(--red)}
+.wrap{max-width:880px;padding:56px 20px 90px}
+.hero{background:var(--paper);color:var(--ink);border-bottom:1px solid var(--line)}
+.hero-in{max-width:880px;padding:72px 20px 64px}
+.hero-top{color:var(--sub);border-bottom:1px solid var(--line);padding-bottom:14px;letter-spacing:2.5px}
+.hero h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:clamp(58px,10vw,104px);color:var(--ink);letter-spacing:.04em;line-height:1.05}
+.hero h1::after{display:none}
+.typer{display:none}
+.hero-desc{color:#3d4753;font-size:16.5px;line-height:1.95;max-width:600px}
+.plate{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 22px}
+.plate .row{border-bottom:1px solid #efede2;padding:11px 0}
+.plate .row:last-child{border-bottom:none}
+.plate .k{color:var(--sub)} .plate .v{color:var(--ink)}
+.plate .ok{color:#177245}
+.chip{background:#fff;border:1px solid var(--line);color:var(--ink);border-radius:999px}
+button.chip{cursor:pointer}
+.hbtn{border-radius:999px;padding:13px 26px;font-size:15px}
+.hbtn.p{background:var(--ink);color:#fff;border:1.5px solid var(--ink)}
+.hbtn.g{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.scopeBox{border-radius:14px;box-shadow:0 24px 48px rgba(16,28,40,.18)}
+section{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:none;padding:44px 46px;margin-bottom:56px}
+section::before{display:none}
+.rh{border-bottom:none;padding-bottom:0;margin-bottom:26px}
+.rh .rno{font-family:var(--mono);color:var(--red);font-size:15px;font-weight:700;letter-spacing:2px}
+.rh .rlab{color:var(--sub);letter-spacing:2.5px}
+.rh h2{font-family:'Noto Serif SC',serif;font-weight:900;font-size:clamp(25px,3.4vw,32px);color:var(--ink)}
+.rh::after{display:none}
+.pcard,.award{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:none}
+.pcard:hover,.award:hover{border-color:#b9b4a2;transform:translateY(-2px);box-shadow:0 10px 24px rgba(28,37,48,.07)}
+.pcard .pt{font-family:'Noto Serif SC',serif;font-weight:700}
+.tl::before{background:var(--line)}
+.tl-item::before{border-radius:50%;border-color:var(--ink);background:#fff}
+.tl-date{background:#f4f2ea;border-color:var(--line)}
+.lab{background:#fdfdfb;border:1px solid var(--line);border-radius:14px;padding:30px}
+.cond .c{background:#fdfdfb;border:1px solid var(--line);border-radius:10px}
+.tagcloud span{border:1px solid var(--line);background:#fff;border-radius:999px}
+.bar{background:#efede2}
+.fmea th{background:#f4f2ea}
+.copybtn{background:#fff;border:1px solid var(--line);color:var(--ink);border-radius:999px}
+.view{background:var(--paper);background-image:none}
+.vhero{background:#fff;border:1px solid var(--line);border-radius:14px;color:var(--ink)}
+.vhero h3{font-family:'Noto Serif SC',serif;font-weight:900;color:var(--ink)}
+.vcard{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:none}
+.modal-in{border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 60px rgba(28,37,48,.18)}
+.d3wrap{border:1px solid var(--line);border-radius:14px}
+footer{color:#98a0a8}
+#toTop{border:1px solid var(--line);background:#fff;border-radius:50%}
+@media(max-width:640px){section{padding:30px 22px}.hero-in{padding:52px 18px 46px}.wrap{padding:38px 14px 70px}}
+@media print{.scopeBox{box-shadow:none}}
 </style>
-
-<script>
-(function(){
-  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  /* 开机自检 */
-  var boot=document.getElementById('boot');
-  function killBoot(){ if(!boot) return; boot.classList.add('off'); setTimeout(function(){boot&&boot.remove();boot=null;},650); }
-  if(boot){ if(RM || sessionStorage.getItem('lxlboot')){ boot.remove(); boot=null; }
-    else{ sessionStorage.setItem('lxlboot','1'); setTimeout(killBoot,1250); boot.addEventListener('click',killBoot); } }
-  /* hero 背景波形 */
-  var cv=document.getElementById('heroWave');
-  if(cv){ var ctx=cv.getContext('2d'), W=0,Hh=0,t=0,run=true;
-    function size(){ var r=cv.parentElement.getBoundingClientRect(), d=Math.min(devicePixelRatio||1,1.5); W=r.width; Hh=r.height; cv.width=W*d; cv.height=Hh*d; ctx.setTransform(d,0,0,d,0,0); }
-    function wave(color,amp,fr,sp,off){ ctx.beginPath(); for(var x=0;x<=W;x+=6){ var y=Hh*.62 + Math.sin(x*fr + t*sp + off)*amp + Math.sin(x*fr*2.7 - t*sp*1.6 + off)*amp*.45; x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);} ctx.strokeStyle=color; ctx.lineWidth=1.5; ctx.stroke(); }
-    function draw(){ ctx.clearRect(0,0,W,Hh); wave('rgba(60,232,143,.32)',26,.011,1,0); wave('rgba(255,178,36,.13)',34,.007,.6,2.4); t+=.014; if(run&&!RM) requestAnimationFrame(draw); }
-    size(); addEventListener('resize',size); draw();
-    if('IntersectionObserver' in window) new IntersectionObserver(function(e){ run=e[0].isIntersecting; if(run&&!RM) requestAnimationFrame(draw); }).observe(cv);
-  }
-  var FINE = matchMedia('(pointer: fine)').matches;
-  if(FINE && !RM){
-    /* 光标环 */
-    var ring=document.createElement('div'); ring.id='cring'; document.body.appendChild(ring);
-    var mx=-100,my=-100,rx=-100,ry=-100;
-    addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;});
-    (function loop(){ rx+=(mx-rx)*.2; ry+=(my-ry)*.2; ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)'; requestAnimationFrame(loop); })();
-    document.addEventListener('mouseover',function(e){ if(e.target.closest('a,button,.pcard,.bar-row,[onclick]')) ring.classList.add('big'); });
-    document.addEventListener('mouseout',function(e){ if(e.target.closest('a,button,.pcard,.bar-row,[onclick]')) ring.classList.remove('big'); });
-    /* 磁吸按钮 */
-    document.querySelectorAll('.hero .hbtn').forEach(function(b){
-      b.addEventListener('mousemove',function(e){ var r=b.getBoundingClientRect(), dx=(e.clientX-r.left-r.width/2)/r.width, dy=(e.clientY-r.top-r.height/2)/r.height; b.style.transform='translate('+(dx*7)+'px,'+(dy*5)+'px)'; });
-      b.addEventListener('mouseleave',function(){ b.style.transform=''; });
-    });
-    /* 项目卡 3D 倾斜 */
-    document.querySelectorAll('.pcard').forEach(function(c){
-      c.addEventListener('mouseenter',function(){ c.style.transition='transform .15s ease-out, box-shadow .25s'; c.style.transitionDelay='0ms'; });
-      c.addEventListener('mousemove',function(e){ var r=c.getBoundingClientRect(), px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5; c.style.transform='perspective(720px) rotateX('+(-py*7)+'deg) rotateY('+(px*7)+'deg) translateY(-4px)'; });
-      c.addEventListener('mouseleave',function(){ c.style.transform=''; setTimeout(function(){c.style.transition='';c.style.transitionDelay='';},200); });
-    });
-  }
-})();
-</script>
 
 <style>
 .d3wrap{position:relative;background:radial-gradient(120% 130% at 50% 0%,#132638,#0b141d);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden}
@@ -906,255 +847,6 @@ body::after{content:"";position:fixed;inset:0;z-index:85;pointer-events:none;opa
       renderer.render(scene,cam);
     })(0);
   } else if(cv){ cv.parentElement.style.display='none'; }
-  /* ---------- 卡片反光 + 头图视差 ---------- */
-  if(matchMedia('(pointer: fine)').matches && !RM){
-    document.querySelectorAll('.pcard').forEach(function(c){
-      c.addEventListener('mousemove',function(e){ var r=c.getBoundingClientRect(); c.style.setProperty('--gx',((e.clientX-r.left)/r.width*100)+'%'); c.style.setProperty('--gy',((e.clientY-r.top)/r.height*100)+'%'); });
-    });
-    var hero=document.querySelector('.hero');
-    if(hero){
-      var layers=[['h1',5],['.plate',9],['.scopeBox',13]];
-      hero.addEventListener('mousemove',function(e){ var r=hero.getBoundingClientRect(), dx=(e.clientX-r.left)/r.width-.5, dy=(e.clientY-r.top)/r.height-.5;
-        layers.forEach(function(L){ var el=hero.querySelector(L[0]); if(el) el.style.transform='translate('+(dx*L[1])+'px,'+(dy*L[1]*.6)+'px)'; }); });
-      hero.addEventListener('mouseleave',function(){ layers.forEach(function(L){ var el=hero.querySelector(L[0]); if(el) el.style.transform=''; }); });
-    }
-  }
 })();
 </script>
-
-<div id="cmdk" role="dialog" aria-label="命令控制台"><div class="cmdk-in">
-  <input id="cmdkInp" type="text" placeholder="输入命令：下载简历 / 复制邮箱 / 跳到04区 / 暗色模式 / 3D模型…" autocomplete="off">
-  <ul id="cmdkList"></ul>
-  <div class="cmdk-ft">↑ ↓ 选择 · Enter 执行 · Esc 关闭</div>
-</div></div>
-<div id="quickbar">
-  <a href="tel:13119997116">☎ 打电话</a>
-  <button type="button" onclick="copyText('1669869402@qq.com','邮箱')">✉ 复制邮箱</button>
-  <a href="#s06">⬇ 下载简历</a>
-</div>
-
-<style>
-.nbtn{background:none;border:none;cursor:pointer;font-family:var(--mono)}
-#cmdk{position:fixed;inset:0;z-index:120;background:rgba(9,14,20,.55);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:11vh 14px 14px}
-#cmdk.on{display:flex}
-.cmdk-in{width:min(580px,94vw);background:var(--card);border:1.5px solid var(--ink);border-top:4px solid #c8402a;border-radius:8px;box-shadow:0 30px 60px rgba(0,0,0,.35);overflow:hidden}
-#cmdkInp{width:100%;box-sizing:border-box;border:none;outline:none;padding:15px 18px;font-size:16px;font-family:inherit;background:transparent;color:inherit;border-bottom:1px solid var(--line)}
-#cmdkList{list-style:none;margin:0;padding:6px;max-height:46vh;overflow-y:auto}
-#cmdkList li{padding:10px 12px;border-radius:5px;font-size:14.5px;cursor:pointer;display:flex;justify-content:space-between;gap:10px}
-#cmdkList li small{color:var(--sub);font-family:var(--mono);font-size:11.5px}
-#cmdkList li.act{background:#17222e;color:#f2efe6}
-#cmdkList li.act small{color:#9fd8bb}
-.cmdk-ft{padding:8px 14px;font-family:var(--mono);font-size:11px;color:var(--sub);border-top:1px solid var(--line)}
-#quickbar{display:none}
-@media(max-width:760px){
-  #quickbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:45;background:rgba(16,24,34,.96);backdrop-filter:blur(8px);border-top:2px solid #c8402a}
-  #quickbar a,#quickbar button{flex:1;text-align:center;padding:13px 4px;color:#f2efe6;font-size:14px;text-decoration:none;background:none;border:none;font-family:inherit;cursor:pointer}
-  #quickbar a+a,#quickbar button{border-left:1px solid rgba(255,255,255,.14)}
-  body{padding-bottom:52px}
-}
-html[data-theme="dark"] body{background:#0c131b;color:#d9e2ea}
-html[data-theme="dark"] section{background:#101a26;border-color:#2a3c50}
-html[data-theme="dark"] h2,html[data-theme="dark"] h3{color:#eef3f7}
-html[data-theme="dark"] nav{background:rgba(12,19,27,.93);border-bottom-color:#3a4c61}
-html[data-theme="dark"] nav .brand{color:#e8eef4}
-html[data-theme="dark"] nav a.nl{color:#a9b8c6}
-html[data-theme="dark"] .pcard,html[data-theme="dark"] .award{background:#131f2d;border-color:#2a3c50}
-html[data-theme="dark"] .lab{background:#131f2d;border-color:#2a3c50;color:#d9e2ea}
-html[data-theme="dark"] .spec{border-color:#3a4c61}
-html[data-theme="dark"] .spec .cell{border-color:#22344a}
-html[data-theme="dark"] .view{background-color:#0c131b;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px)}
-html[data-theme="dark"] .vcard,html[data-theme="dark"] .vhero{background:#101a26;color:#d9e2ea;border-color:#2a3c50}
-html[data-theme="dark"] .copybtn{background:#16222e;color:#d9e2ea;border-color:#3a5069}
-html[data-theme="dark"] #progLbl{background:rgba(16,26,38,.92);color:#a9b8c6;border-color:#2a3c50}
-html[data-theme="dark"] footer{color:#7e8fa0}
-html[data-theme="dark"] #s01::before,html[data-theme="dark"] #s02::before,html[data-theme="dark"] #s03::before,html[data-theme="dark"] #s05::before,html[data-theme="dark"] #s06::before{-webkit-text-stroke-color:rgba(255,255,255,.08)}
-html[data-theme="dark"] .cmdk-in{background:#101a26;color:#d9e2ea;border-color:#3a4c61}
-html[data-theme="dark"] #cmdkInp{border-bottom-color:#2a3c50;color:#eef3f7}
-@media print{#quickbar,#cmdk{display:none!important}}
-</style>
-
-<script>
-(function(){
-  var $=function(s){return document.querySelector(s)};
-  /* ---------- 暗色模式 ---------- */
-  var themeBtn=$('#themeBtn');
-  function setTheme(t){ document.documentElement.setAttribute('data-theme',t); try{localStorage.setItem('lxltheme',t)}catch(e){} if(themeBtn) themeBtn.textContent = t==='dark' ? '☀️ 纸面' : '🌙 暗色'; }
-  var saved='light'; try{ saved=localStorage.getItem('lxltheme')||'light'; }catch(e){}
-  setTheme(saved);
-  if(themeBtn) themeBtn.addEventListener('click',function(){ setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'); blip(520,.06); });
-  /* ---------- 音效（默认关） ---------- */
-  var snd=false; try{ snd=localStorage.getItem('lxlsnd')==='1'; }catch(e){}
-  var sndBtn=$('#sndBtn'), AC=null;
-  function paintSnd(){ if(sndBtn) sndBtn.textContent = snd ? '🔊 音效' : '🔇 音效'; }
-  paintSnd();
-  function ac(){ if(!AC){ try{ AC=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } if(AC&&AC.state==='suspended') AC.resume(); return AC; }
-  function tone(f,d,type,g,slideTo){ if(!snd) return; var c=ac(); if(!c) return; var o=c.createOscillator(), gn=c.createGain(); o.type=type||'square'; o.frequency.setValueAtTime(f,c.currentTime); if(slideTo) o.frequency.exponentialRampToValueAtTime(slideTo,c.currentTime+d); gn.gain.setValueAtTime(g||.04,c.currentTime); gn.gain.exponentialRampToValueAtTime(.0001,c.currentTime+d); o.connect(gn); gn.connect(c.destination); o.start(); o.stop(c.currentTime+d); }
-  function blip(f,d){ tone(f||660,d||.05,'square',.03); }
-  if(sndBtn) sndBtn.addEventListener('click',function(){ snd=!snd; try{localStorage.setItem('lxlsnd',snd?'1':'0')}catch(e){} paintSnd(); if(snd) blip(880,.07); });
-  document.addEventListener('click',function(e){ if(e.target.closest('button,a.nl,.pcard,.bar-row')) blip(600,.035); });
-  if(window.copyText){ var _ct=window.copyText; window.copyText=function(t,l){ _ct(t,l); tone(880,.07,'square',.04,1320); }; }
-  if(window.scopeMode){ var _sm=window.scopeMode; window.scopeMode=function(m){ _sm(m); tone(300,.16,'sawtooth',.03,720); }; }
-  /* ---------- 命令面板 ---------- */
-  var cmdk=$('#cmdk'), inp=$('#cmdkInp'), list=$('#cmdkList'), actIdx=0, cur=[];
-  function go(hash){ var el=document.querySelector(hash); if(el) el.scrollIntoView({behavior:'smooth'}); }
-  function dl(f){ var a=document.createElement('a'); a.href=f; a.setAttribute('download',''); document.body.appendChild(a); a.click(); a.remove(); }
-  var ACTIONS=[
-    {t:'跳到 01 · 样品概况', s:'#s01', run:function(){go('#s01')}},
-    {t:'跳到 02 · 试验履历', s:'#s02', run:function(){go('#s02')}},
-    {t:'跳到 03 · 项目档案', s:'#s03', run:function(){go('#s03')}},
-    {t:'跳到 3D · 钢带悬挂系统模型', s:'#s3d', run:function(){go('#s3d')}},
-    {t:'跳到 04 · 方法与演示', s:'#s04', run:function(){go('#s04')}},
-    {t:'跳到 05 · 失效分析与成果', s:'#s05', run:function(){go('#s05')}},
-    {t:'跳到 附录 · 联系与下载', s:'#s06', run:function(){go('#s06')}},
-    {t:'打开 结构工程师版报告', s:'view', run:function(){openView('dir-struct')}},
-    {t:'打开 可靠性工程师版报告', s:'view', run:function(){openView('dir-rel')}},
-    {t:'下载简历 PDF · 结构工程师版', s:'pdf', run:function(){dl('resume-structural.pdf')}},
-    {t:'下载简历 PDF · 可靠性测试工程师版', s:'pdf', run:function(){dl('resume-reliability.pdf')}},
-    {t:'复制邮箱', s:'copy', run:function(){copyText('1669869402@qq.com','邮箱')}},
-    {t:'复制电话', s:'copy', run:function(){copyText('13119997116','电话')}},
-    {t:'切换 暗色 / 纸面模式', s:'theme', run:function(){themeBtn&&themeBtn.click()}},
-    {t:'开启 / 关闭 音效', s:'sound', run:function(){sndBtn&&sndBtn.click()}}
-  ];
-  function render(q){
-    cur=ACTIONS.filter(function(a){ return !q || a.t.toLowerCase().indexOf(q.toLowerCase())>-1; });
-    actIdx=0;
-    list.innerHTML=cur.map(function(a,i){ return '<li data-i="'+i+'" class="'+(i===actIdx?'act':'')+'"><span>'+a.t+'</span><small>'+a.s+'</small></li>'; }).join('') || '<li>没有匹配的命令</li>';
-    list.querySelectorAll('li[data-i]').forEach(function(li){ li.addEventListener('click',function(){ exec(+li.getAttribute('data-i')); }); });
-  }
-  function paintAct(){ list.querySelectorAll('li').forEach(function(li,i){ li.classList.toggle('act',i===actIdx); }); }
-  function exec(i){ var a=cur[i]; closeCmdk(); if(a) setTimeout(function(){a.run();},30); }
-  function openCmdk(){ cmdk.classList.add('on'); inp.value=''; render(''); setTimeout(function(){inp.focus();},30); blip(740,.05); }
-  function closeCmdk(){ cmdk.classList.remove('on'); }
-  var cb=$('#cmdkBtn'); if(cb) cb.addEventListener('click',openCmdk);
-  cmdk.addEventListener('click',function(e){ if(e.target===cmdk) closeCmdk(); });
-  inp.addEventListener('input',function(){ render(inp.value.trim()); });
-  inp.addEventListener('keydown',function(e){
-    if(e.key==='ArrowDown'){ e.preventDefault(); actIdx=Math.min(actIdx+1,cur.length-1); paintAct(); }
-    else if(e.key==='ArrowUp'){ e.preventDefault(); actIdx=Math.max(actIdx-1,0); paintAct(); }
-    else if(e.key==='Enter'){ exec(actIdx); }
-  });
-  document.addEventListener('keydown',function(e){
-    if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); cmdk.classList.contains('on')?closeCmdk():openCmdk(); }
-    else if(e.key==='Escape'){ closeCmdk(); }
-  });
-})();
-</script>
-
-<style>
-/* ===== v13 分屏骨架：左侧固定仪表栏 + 右侧滚动档案 ===== */
-body{font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif}
-h1,.rh h2,.vhero h3,.boot-in .b3{font-family:'Noto Serif SC','Noto Sans SC',serif}
-@media(min-width:1024px){
-  body{display:grid;grid-template-columns:minmax(390px,35%) 1fr;column-gap:0}
-  nav{grid-column:1/-1}
-  .hero{grid-column:1;grid-row:2/span 40;position:sticky;top:49px;height:calc(100vh - 49px);overflow-y:auto;overflow-x:hidden;border-bottom:none;border-right:4px solid var(--ink);scrollbar-width:thin;scrollbar-color:#33506e transparent}
-  .hero::-webkit-scrollbar{width:5px}
-  .hero::-webkit-scrollbar-thumb{background:#33506e;border-radius:3px}
-  .hero-in{max-width:none;padding:38px 34px 46px}
-  .hero-grid{grid-template-columns:1fr;gap:20px}
-  .hero h1{font-size:clamp(54px,4.8vw,86px)}
-  .scopeBox canvas{width:100%;height:auto}
-  .obadge{width:88px;height:88px;right:18px;bottom:18px}
-  .ticker{grid-column:2;margin:24px 30px 0 4px}
-  .wrap{grid-column:2;max-width:none;width:auto;margin:0;padding:22px 30px 80px 4px}
-  section{box-shadow:7px 7px 0 rgba(23,34,46,.08)}
-}
-@media(max-width:1023px){
-  .hero{position:relative;height:auto;overflow:visible}
-}
-</style>
-
-<style>
-#railNow{display:none}
-@media(min-width:1024px){
-  #railNow{display:block;font-family:var(--mono);font-size:11px;letter-spacing:2.5px;color:#7fd6a4;border:1px dashed rgba(60,232,143,.35);padding:6px 10px;margin-top:14px;border-radius:4px}
-}
-.railStats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 12px;margin-top:20px;border-top:1px dashed rgba(255,255,255,.25);padding-top:16px}
-@media(min-width:1024px){.railStats{grid-template-columns:repeat(2,1fr)}}
-.railStats b{font-family:'Noto Serif SC',serif;font-size:27px;color:#fff;display:block;line-height:1.1}
-.railStats span{font-size:11px;color:#8fa3b5;letter-spacing:.5px}
-#tlFill{position:absolute;left:7px;top:6px;width:2px;background:#c8402a;height:0;z-index:1}
-.tl-item.passed::before{background:#c8402a;border-color:#c8402a}
-</style>
-
-<script>
-(function(){
-  /* 数字滚动 */
-  var counted=false;
-  function countUp(){
-    if(counted) return; counted=true;
-    document.querySelectorAll('.railStats b[data-cnt]').forEach(function(el){
-      var target=parseFloat(el.getAttribute('data-cnt')), dec=+(el.getAttribute('data-dec')||0), t0=null;
-      function step(ts){ if(!t0)t0=ts; var pr=Math.min((ts-t0)/1100,1); pr=1-Math.pow(1-pr,3); el.textContent=(target*pr).toFixed(dec); if(pr<1) requestAnimationFrame(step); }
-      requestAnimationFrame(step);
-    });
-  }
-  setTimeout(countUp, 900);
-  /* 左栏当前章节读数 */
-  var rn=document.getElementById('railNow');
-  if(rn && 'IntersectionObserver' in window){
-    var names={s01:'01 · 样品概况',s02:'02 · 试验履历',s03:'03 · 项目档案',s3d:'3D · 钢带悬挂系统',s04:'04 · 方法与演示',s05:'05 · 失效分析与成果',s06:'附录 · 联系与交付'};
-    var io=new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting && names[x.target.id]) rn.textContent='NOW VIEWING · '+names[x.target.id]; }); },{rootMargin:'-30% 0px -60% 0px'});
-    document.querySelectorAll('section[id]').forEach(function(s){ io.observe(s); });
-  }
-  /* 履历时间线填充 */
-  var tl=document.querySelector('.tl');
-  if(tl){
-    var fill=document.createElement('div'); fill.id='tlFill'; tl.insertBefore(fill, tl.firstChild);
-    var items=[].slice.call(tl.querySelectorAll('.tl-item')), tick=false;
-    function upd(){
-      tick=false;
-      var r=tl.getBoundingClientRect(), vh=innerHeight||800;
-      var pr=(vh*.72 - r.top)/r.height; pr=Math.max(0,Math.min(1,pr));
-      fill.style.height=(pr*Math.max(r.height-12,0))+'px';
-      items.forEach(function(it){ it.classList.toggle('passed', it.offsetTop < pr*r.height + 4); });
-    }
-    addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
-    upd();
-  }
-})();
-</script>
-
-<style>
-.divider{overflow:hidden;padding:8px 2px 0;margin-bottom:16px}
-.divider span{display:inline-block;white-space:nowrap;font-family:var(--mono);font-weight:800;font-size:clamp(28px,3.4vw,44px);letter-spacing:2px;color:transparent;-webkit-text-stroke:1px rgba(23,34,46,.17);will-change:transform;transform:translateX(-30px)}
-html[data-theme="dark"] .divider span{-webkit-text-stroke-color:rgba(255,255,255,.15)}
-.hprog{display:none}
-.hhint{display:none}
-@media(min-width:1024px){
-  #s03 .cards{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x proximity;padding:6px 2px 14px;scrollbar-width:none;cursor:grab}
-  #s03 .cards::-webkit-scrollbar{display:none}
-  #s03 .cards:active{cursor:grabbing}
-  #s03 .pcard{flex:0 0 min(400px,82%);scroll-snap-align:start;margin:0}
-  .hprog{display:block;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
-  .hprog i{display:block;height:100%;width:12%;background:#c8402a;transition:width .15s ease-out}
-  .hhint{display:block;font-family:var(--mono);font-size:11px;color:var(--sub);letter-spacing:1.5px;margin-top:8px}
-}
-.railHint{display:none}
-@media(min-width:1024px){.railHint{display:block;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:2px;color:#5d7185;border-top:1px dashed rgba(255,255,255,.14);padding-top:12px;line-height:1.9}}
-</style>
-
-<script>
-(function(){
-  /* 左栏底部控制台提示 */
-  var hi=document.querySelector('.hero-in');
-  if(hi){ var d=document.createElement('div'); d.className='railHint'; d.textContent='CTRL + K · 命令控制台 — 快速跳转 / 下载简历 / 复制联系方式 / 切换主题'; hi.appendChild(d); }
-  /* 项目档案横滑：拖动 + 进度 */
-  var strip=document.querySelector('#s03 .cards'), fill=document.getElementById('hprogFill');
-  if(strip){
-    var down=false,sx=0,sl=0,moved=0;
-    strip.addEventListener('pointerdown',function(e){ down=true; moved=0; sx=e.clientX; sl=strip.scrollLeft; });
-    addEventListener('pointermove',function(e){ if(!down) return; var dx=e.clientX-sx; if(Math.abs(dx)>4){ moved=1; strip.scrollLeft=sl-dx; } });
-    addEventListener('pointerup',function(){ down=false; setTimeout(function(){moved=0;},50); });
-    strip.addEventListener('click',function(e){ if(moved){ e.stopPropagation(); e.preventDefault(); } },true);
-    function upd(){ if(!fill) return; var max=strip.scrollWidth-strip.clientWidth; var pr=max>0?strip.scrollLeft/max:0; fill.style.width=(12+pr*88)+'%'; }
-    strip.addEventListener('scroll',upd,{passive:true}); upd();
-  }
-  /* 分隔大字视差 */
-  var divs=[].slice.call(document.querySelectorAll('.divider span')), tick=false;
-  function upd2(){ tick=false; var vh=innerHeight||800; divs.forEach(function(sp){ var r=sp.parentElement.getBoundingClientRect(); var off=(r.top+r.height/2-vh/2)*-.09; off=Math.max(-70,Math.min(70,off)); sp.style.transform='translateX('+(-30+off)+'px)'; }); }
-  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd2); } },{passive:true}); upd2();
-})();
-</script>
-</body>
-</html>
+</body></html>
