@@ -189,7 +189,7 @@ section{scroll-margin-top:64px}
   <a class="nl" href="#s05">05 成果</a><a class="nl" href="#s06" style="color:var(--red)">↓ 简历PDF</a><a class="nl" href="#s06">附录 联系</a>
 </div></nav>
 
-<div class="hero"><div class="hero-in">
+<div class="hero"><div class="obadge" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="cir" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><circle cx="50" cy="50" r="49" fill="rgba(11,20,29,.55)" stroke="rgba(255,255,255,.28)"/><text font-size="10.5" fill="#e8e4d8" letter-spacing="2.6" font-family="monospace"><textPath href="#cir">2027届 · 求职中 · OPEN TO WORK · 杭州 ·</textPath></text><circle cx="50" cy="50" r="4.5" fill="#c8402a"/></svg></div><div class="hero-in">
   <div class="hero-top"><span>可靠性试验报告 · PERSONAL RELIABILITY TEST REPORT</span><span>报告编号 LXL-2027-001</span></div>
   <div class="hero-grid">
     <div>
@@ -667,6 +667,46 @@ addEventListener('scroll',()=>{tt2.classList.toggle('show',scrollY>500);
   document.getElementById('prog').style.width=p+'%';
   document.getElementById('progLbl').textContent='试验进度 '+Math.round(p)+'%';});
 tt2.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+</script>
+
+<style>
+::selection{background:#c8402a;color:#fff}
+body::-webkit-scrollbar{width:10px}body::-webkit-scrollbar-thumb{background:#17222e;border-radius:5px}body::-webkit-scrollbar-track{background:#e9e7dc}
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"可靠性工程";position:absolute;right:1%;top:54%;transform:translateY(-50%);writing-mode:vertical-rl;font-size:148px;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.055);letter-spacing:.12em;pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 42%,rgba(60,232,143,.07) 50%,transparent 58%);transform:translateX(-110%);animation:hsweep 2.4s ease .35s 1 forwards;pointer-events:none}
+@keyframes hsweep{to{transform:translateX(110%)}}
+.hero h1{font-size:clamp(56px,9vw,102px);letter-spacing:.03em;position:relative;display:inline-block}
+.hero h1::after{content:"";position:absolute;left:2px;bottom:-8px;height:5px;width:0;background:#c8402a;animation:hbar 1s cubic-bezier(.22,.8,.3,1) .5s forwards}
+@keyframes hbar{to{width:calc(100% - 4px)}}
+.obadge{position:absolute;right:28px;bottom:28px;width:106px;height:106px;animation:ospin 16s linear infinite;z-index:3;pointer-events:none}
+@keyframes ospin{to{transform:rotate(360deg)}}
+@media(max-width:760px){.obadge{display:none}.hero::before{font-size:96px}}
+.sc-lbl b::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#3ce88f;margin-right:6px;animation:plive 1.6s infinite}
+@keyframes plive{0%,100%{opacity:1}50%{opacity:.2}}
+section{position:relative}
+#s01::before{content:"01"}#s02::before{content:"02"}#s03::before{content:"03"}#s04::before{content:"04"}#s05::before{content:"05"}#s06::before{content:"附"}
+#s01::before,#s02::before,#s03::before,#s04::before,#s05::before,#s06::before{position:absolute;top:2px;right:16px;font-family:var(--mono);font-size:104px;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(23,34,46,.055);pointer-events:none;line-height:1;z-index:0}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.8,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media(hover:hover){.pcard,.award{transition:transform .25s ease,box-shadow .25s ease}.pcard:hover,.award:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(23,34,46,.13)}.hbtn{transition:transform .25s ease}.hbtn:hover{transform:translateY(-2px)}}
+nav a.nl.act{color:#c8402a;font-weight:700}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+
+<script>
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.rh,.pcard,.award,.tl-item,.spec,.plate'));
+  els.forEach(function(e,i){e.classList.add('rv');e.style.transitionDelay=((i%3)*70)+'ms';});
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});}
+  else{
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.1});
+    els.forEach(function(e){io.observe(e);});
+    var links={};document.querySelectorAll('nav a.nl').forEach(function(a){links[a.getAttribute('href')]=a;});
+    var io2=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){document.querySelectorAll('nav a.nl').forEach(function(a){a.classList.remove('act')});var a=links['#'+x.target.id];if(a)a.classList.add('act');}});},{rootMargin:'-38% 0px -55% 0px'});
+    document.querySelectorAll('section[id]').forEach(function(s){io2.observe(s);});
+  }
+})();
 </script>
 </body>
 </html>
