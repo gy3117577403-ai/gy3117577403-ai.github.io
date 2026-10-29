@@ -307,6 +307,7 @@ section{scroll-margin-top:64px}
   </div>
 </section>
 
+<div class="divider" aria-hidden="true"><span>PROJECT FILES · 项目档案 · PROJECT FILES · 项目档案 ·</span></div>
 <section id="s03">
   <div class="rh"><span class="rno">03</span><div><div class="rlab">TEST ITEM 03 · TEST PROJECTS</div><h2>试验项目档案（点击进入项目报告）</h2></div></div>
   <div class="cards">
@@ -319,6 +320,8 @@ section{scroll-margin-top:64px}
     <div class="pcard" onclick="openView('proj-mine')"><span class="pr">FILE-04 · 校企合作项目</span><div class="pt">矿车自动摘挂钩机构设计</div>
       <ul><li>学生负责人：动作分解与功能定义</li><li>电机驱动执行机构、末端抓夹总装设计</li><li>运动仿真与空间干涉检查</li></ul><div class="enter">打开项目报告 →</div></div>
   </div>
+  <div class="hprog"><i id="hprogFill"></i></div>
+  <div class="hhint">← 拖动查看全部 4 个项目档案 →</div>
 </section>
 
 <section id="s3d">
@@ -372,6 +375,7 @@ section{scroll-margin-top:64px}
   </div>
 </section>
 
+<div class="divider" aria-hidden="true"><span>FAILURE ANALYSIS · 失效分析 · FAILURE ANALYSIS · 失效分析 ·</span></div>
 <section id="s05">
   <div class="rh"><span class="rno">05</span><div><div class="rlab">TEST ITEM 05 · ANALYSIS & RECORDS</div><h2>失效分析与成果记录</h2></div></div>
   <h3 style="font-family:var(--mono);font-size:14px;letter-spacing:1.5px;margin-bottom:10px">FMEA 摘要 · 钢带悬挂系统（出自我的省重点研发子课题，点表头按风险排序）</h3>
@@ -1108,6 +1112,48 @@ h1,.rh h2,.vhero h3,.boot-in .b3{font-family:'Noto Serif SC','Noto Sans SC',seri
     addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
     upd();
   }
+})();
+</script>
+
+<style>
+.divider{overflow:hidden;padding:8px 2px 0;margin-bottom:16px}
+.divider span{display:inline-block;white-space:nowrap;font-family:var(--mono);font-weight:800;font-size:clamp(28px,3.4vw,44px);letter-spacing:2px;color:transparent;-webkit-text-stroke:1px rgba(23,34,46,.17);will-change:transform;transform:translateX(-30px)}
+html[data-theme="dark"] .divider span{-webkit-text-stroke-color:rgba(255,255,255,.15)}
+.hprog{display:none}
+.hhint{display:none}
+@media(min-width:1024px){
+  #s03 .cards{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x proximity;padding:6px 2px 14px;scrollbar-width:none;cursor:grab}
+  #s03 .cards::-webkit-scrollbar{display:none}
+  #s03 .cards:active{cursor:grabbing}
+  #s03 .pcard{flex:0 0 min(400px,82%);scroll-snap-align:start;margin:0}
+  .hprog{display:block;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+  .hprog i{display:block;height:100%;width:12%;background:#c8402a;transition:width .15s ease-out}
+  .hhint{display:block;font-family:var(--mono);font-size:11px;color:var(--sub);letter-spacing:1.5px;margin-top:8px}
+}
+.railHint{display:none}
+@media(min-width:1024px){.railHint{display:block;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:2px;color:#5d7185;border-top:1px dashed rgba(255,255,255,.14);padding-top:12px;line-height:1.9}}
+</style>
+
+<script>
+(function(){
+  /* 左栏底部控制台提示 */
+  var hi=document.querySelector('.hero-in');
+  if(hi){ var d=document.createElement('div'); d.className='railHint'; d.textContent='CTRL + K · 命令控制台 — 快速跳转 / 下载简历 / 复制联系方式 / 切换主题'; hi.appendChild(d); }
+  /* 项目档案横滑：拖动 + 进度 */
+  var strip=document.querySelector('#s03 .cards'), fill=document.getElementById('hprogFill');
+  if(strip){
+    var down=false,sx=0,sl=0,moved=0;
+    strip.addEventListener('pointerdown',function(e){ down=true; moved=0; sx=e.clientX; sl=strip.scrollLeft; });
+    addEventListener('pointermove',function(e){ if(!down) return; var dx=e.clientX-sx; if(Math.abs(dx)>4){ moved=1; strip.scrollLeft=sl-dx; } });
+    addEventListener('pointerup',function(){ down=false; setTimeout(function(){moved=0;},50); });
+    strip.addEventListener('click',function(e){ if(moved){ e.stopPropagation(); e.preventDefault(); } },true);
+    function upd(){ if(!fill) return; var max=strip.scrollWidth-strip.clientWidth; var pr=max>0?strip.scrollLeft/max:0; fill.style.width=(12+pr*88)+'%'; }
+    strip.addEventListener('scroll',upd,{passive:true}); upd();
+  }
+  /* 分隔大字视差 */
+  var divs=[].slice.call(document.querySelectorAll('.divider span')), tick=false;
+  function upd2(){ tick=false; var vh=innerHeight||800; divs.forEach(function(sp){ var r=sp.parentElement.getBoundingClientRect(); var off=(r.top+r.height/2-vh/2)*-.09; off=Math.max(-70,Math.min(70,off)); sp.style.transform='translateX('+(-30+off)+'px)'; }); }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd2); } },{passive:true}); upd2();
 })();
 </script>
 </body>
